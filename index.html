@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <title>WVSU Connect - Catchy Learning Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(145deg, #f5e6d3 0%, #f0d9c4 100%);
+            position: relative;
+        }
+
+        /* ============ CATCHY ANIMATED BACKGROUND ============ */
+        .bg-bubbles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .bubble {
+            position: absolute;
+            background: radial-gradient(circle, rgba(27,94,63,0.15), rgba(245,176,66,0.08));
+            border-radius: 50%;
+            animation: floatBubble 8s ease-in-out infinite;
+        }
+
+        .bubble:nth-child(1) { width: 200px; height: 200px; top: -50px; left: -50px; animation-duration: 12s; }
+        .bubble:nth-child(2) { width: 300px; height: 300px; bottom: -100px; right: -100px; animation-duration: 15s; }
+        .bubble:nth-child(3) { width: 150px; height: 150px; top: 40%; right: 10%; animation-duration: 10s; }
+        .bubble:nth-child(4) { width: 100px; height: 100px; bottom: 20%; left: 15%; animation-duration: 7s; }
+        .bubble:nth-child(5) { width: 250px; height: 250px; top: 60%; left: -80px; animation-duration: 18s; }
+
+        @keyframes floatBubble {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(20px, -20px) scale(1.05); }
+            50% { transform: translate(-15px, 15px) scale(0.95); }
+            75% { transform: translate(10px, 10px) scale(1.02); }
+        }
+
+        /* ============ HEADER - BOLD & CATCHY ============ */
+        .header {
+            background: linear-gradient(135deg, #FF6B35 0%, #FF8C42 50%, #FFB347 100%);
+            padding: 25px 20px 35px 20px;
+            border-radius: 0 0 50px 50px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(255,107,53,0.3);
+        }
+
+        .header::before {
+            content: "⚡";
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 80px;
+            opacity: 0.15;
+            animation: sparkle 2s ease infinite;
+        }
+
+        .header::after {
+            content: "🎯";
+            position: absolute;
+            bottom: 10px;
+            left: 20px;
+            font-size: 60px;
+            opacity: 0.15;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1); opacity: 0.15; }
+            50% { transform: scale(1.2); opacity: 0.25; }
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 55px;
+            height: 55px;
+            background: white;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            animation: bounce 2s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header-sub {
+            font-size: 11px;
+            opacity: 0.95;
+            margin-top: 5px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .header-sub span {
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 25px;
+            font-weight: 600;
+        }
+
+        /* ============ NOTIFICATION BELL - CATCHY ============ */
+        .notification-area {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .bell-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            backdrop-filter: blur(5px);
+            transition: all 0.2s;
+        }
+
+        .bell-icon:active {
+            transform: scale(0.9);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #FF3366;
+            color: white;
+            font-size: 11px;
+            font-weight: 900;
+            padding: 4px 8px;
+            border-radius: 25px;
+            min-width: 22px;
+            text-align: center;
+            box-shadow: 0 0 0 2px white;
+            animation: wiggle 0.5s ease infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            75% { transform: rotate(-10deg); }
+        }
+
+        /* ============ SDG BANNER - POPPING ============ */
+        .sdg-banner {
+            background: linear-gradient(135deg, #FFD700, #FFA500, #FF8C00);
+            margin: -22px 18px 0 18px;
+            padding: 18px 22px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            z-index: 5;
+            box-shadow: 0 15px 30px rgba(255,165,0,0.4);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .sdg-icon {
+            width: 55px;
+            height: 55px;
+            background: white;
+            border-radius: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            animation: spin 3s ease infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            75% { transform: rotate(-5deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        .sdg-title {
+            font-weight: 900;
+            font-size: 15px;
+            color: white;
+            text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
+        }
+
+        .sdg-desc {
+            font-size: 10px;
+            color: #FFF8E7;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+
+        /* ============ STATUS CARD - NEON ============ */
+        .status-card {
+            background: white;
+            margin: 20px 18px 12px 18px;
+            padding: 12px 22px;
+            border-radius: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border: 2px solid #FFB347;
+        }
+
+        .status-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .status-dot {
+            width: 14px;
+            height: 14px;
+            background: #00E676;
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 rgba(0,230,118,0.5);
+            animation: livePulse 1s ease infinite;
+        }
+
+        @keyframes livePulse {
+            0% { box-shadow: 0 0 0 0 rgba(0,230,118,0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(0,230,118,0); }
+            100% { box-shadow: 0 0 0 0 rgba(0,230,118,0); }
+        }
+
+        .status-text {
+            font-weight: 800;
+            font-size: 14px;
+            color: #FF6B35;
+        }
+
+        .mode-badge {
+            background: linear-gradient(135deg, #FF6B35, #FFB347);
+            color: white;
+            padding: 7px 20px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        /* ============ PROFILE CARD - CATCHY ============ */
+        .profile-card {
+            background: linear-gradient(135deg, #ffffff, #fff9f0);
+            margin: 0 18px 20px 18px;
+            padding: 20px;
+            border-radius: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 2px solid #FFD700;
+            position: relative;
+        }
+
+        .profile-card::before {
+            content: "🌟";
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            font-size: 30px;
+            animation: starRotate 2s linear infinite;
+        }
+
+        @keyframes starRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .profile-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .avatar {
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(145deg, #FF6B35, #FFB347);
+            border-radius: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            box-shadow: 0 10px 25px rgba(255,107,53,0.4);
+            animation: avatarGlow 2s ease infinite;
+        }
+
+        @keyframes avatarGlow {
+            0%, 100% { box-shadow: 0 10px 25px rgba(255,107,53,0.4); }
+            50% { box-shadow: 0 15px 35px rgba(255,107,53,0.7); }
+        }
+
+        .student-name {
+            font-weight: 900;
+            font-size: 18px;
+            color: #FF6B35;
+        }
+
+        .student-details {
+            font-size: 11px;
+            color: #8B7355;
+            margin-top: 4px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .saved-stats {
+            background: linear-gradient(135deg, #FF6B35, #FFB347);
+            padding: 12px 20px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(255,107,53,0.3);
+        }
+
+        .saved-number {
+            font-size: 28px;
+            font-weight: 900;
+            color: white;
+        }
+
+        .saved-label {
+            font-size: 10px;
+            color: rgba(255,255,255,0.9);
+            font-weight: 600;
+        }
+
+        /* ============ TABS - BOLD ============ */
+        .tabs-container {
+            margin: 0 18px 20px 18px;
+            background: white;
+            border-radius: 60px;
+            padding: 6px;
+            display: flex;
+            gap: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 14px 8px;
+            border: none;
+            background: none;
+            font-size: 13px;
+            font-weight: 800;
+            color: #A08060;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #FF6B35, #FFB347);
+            color: white;
+            box-shadow: 0 5px 15px rgba(255,107,53,0.3);
+            transform: scale(1.02);
+        }
+
+        /* ============ CONTAINER ============ */
+        .container {
+            padding: 0 18px 100px 18px;
+        }
+
+        /* ============ CARDS - VIBRANT ============ */
+        .card {
+            background: white;
+            border-radius: 35px;
+            padding: 24px;
+            margin-bottom: 18px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border: 2px solid #FFE4C4;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-color: #FFB347;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 900;
+            color: #FF6B35;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-left: 15px;
+            border-left: 6px solid #FFD700;
+        }
+
+        /* ============ MODULE ITEMS - COLORFUL ============ */
+        .module-item {
+            background: linear-gradient(145deg, #FFF9F0, #FFFAF5);
+            border-radius: 25px;
+            padding: 18px;
+            margin-bottom: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+            border: 1px solid #FFE0B5;
+            cursor: pointer;
+        }
+
+        .module-item:hover {
+            transform: translateX(10px);
+            border-color: #FF6B35;
+            background: white;
+            box-shadow: 0 8px 20px rgba(255,107,53,0.15);
+        }
+
+        .module-info h4 {
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 6px;
+            color: #4A3728;
+        }
+
+        .module-info p {
+            font-size: 11px;
+            color: #B8956E;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .badge-downloaded {
+            background: linear-gradient(135deg, #00E676, #00C853);
+            color: white;
+            font-size: 10px;
+            padding: 4px 12px;
+            border-radius: 25px;
+            font-weight: 800;
+        }
+
+        .btn-download, .btn-open {
+            padding: 12px 24px;
+            border-radius: 40px;
+            border: none;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-download {
+            background: linear-gradient(135deg, #FF6B35, #FFB347);
+            color: white;
+            box-shadow: 0 5px 15px rgba(255,107,53,0.3);
+        }
+
+        .btn-download:active {
+            transform: scale(0.95);
+        }
+
+        .btn-open {
+            background: linear-gradient(135deg, #00C853, #00E676);
+            color: white;
+            box-shadow: 0 5px 15px rgba(0,200,83,0.3);
+        }
+
+        .btn-open:active {
+            transform: scale(0.95);
+        }
+
+        /* ============ FORM - COLORFUL ============ */
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: #FF6B35;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 15px 18px;
+            border: 2px solid #FFE0B5;
+            border-radius: 25px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: all 0.2s;
+            background: #FFF9F0;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #FF6B35;
+            box-shadow: 0 0 0 4px rgba(255,107,53,0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #FF6B35, #FFB347);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 40px;
+            font-weight: 900;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+            box-shadow: 0 5px 20px rgba(255,107,53,0.3);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        /* ============ DEADLINE ITEMS ============ */
+        .deadline-item {
+            padding: 16px;
+            border-left: 6px solid #FFB347;
+            background: #FFF9F0;
+            border-radius: 22px;
+            margin-bottom: 12px;
+            transition: all 0.2s;
+        }
+
+        .deadline-item.completed {
+            border-left-color: #00E676;
+            background: #F0FFF4;
+        }
+
+        .deadline-item.overdue {
+            border-left-color: #FF3366;
+            background: #FFF0F0;
+        }
+
+        .deadline-title {
+            font-weight: 800;
+            font-size: 15px;
+            color: #4A3728;
+        }
+
+        .deadline-date {
+            font-size: 11px;
+            color: #B8956E;
+            margin-top: 6px;
+        }
+
+        /* ============ PROGRESS BARS ============ */
+        .progress-stat {
+            margin-bottom: 25px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: #4A3728;
+        }
+
+        .progress-bar {
+            background: #FFE4C4;
+            border-radius: 30px;
+            height: 14px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #FF6B35, #FFD700);
+            height: 100%;
+            width: 0%;
+            border-radius: 30px;
+            transition: width 0.8s;
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shine 1.5s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* ============ IMPACT CARD - GLOWING ============ */
+        .impact-card {
+            background: linear-gradient(145deg, #FFF9F0, #FFFAF5);
+            border-radius: 35px;
+            padding: 25px;
+            text-align: center;
+            border: 2px solid #FFD700;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .impact-card::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,215,0,0.1), transparent);
+            animation: rotate 15s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .impact-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ============ NOTIFICATION PANEL ============ */
+        .notification-panel {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 380px;
+            height: 100vh;
+            background: white;
+            z-index: 2000;
+            transition: right 0.4s;
+            box-shadow: -10px 0 40px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .notification-panel.open {
+            right: 0;
+        }
+
+        .notification-header {
+            background: linear-gradient(135deg, #FF6B35, #FFB347);
+            color: white;
+            padding: 28px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .notification-header h3 {
+            font-size: 20px;
+            font-weight: 900;
+        }
+
+        .close-notif {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            font-size: 26px;
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .notification-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .notification-item {
+            background: #FFF9F0;
+            border-radius: 22px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-left: 5px solid #FFB347;
+            animation: slideRight 0.3s;
+        }
+
+        @keyframes slideRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .notification-item.urgent {
+            border-left-color: #FF3366;
+            background: #FFF0F0;
+        }
+
+        .notification-title {
+            font-weight: 800;
+            font-size: 14px;
+            color: #4A3728;
+        }
+
+        .notification-message {
+            font-size: 12px;
+            color: #B8956E;
+            margin-top: 5px;
+        }
+
+        .notification-time {
+            font-size: 10px;
+            color: #D4B896;
+            margin-top: 8px;
+        }
+
+        .clear-notif {
+            background: #FFE4C4;
+            border: none;
+            padding: 15px;
+            margin: 16px;
+            border-radius: 30px;
+            font-weight: 800;
+            cursor: pointer;
+            color: #FF6B35;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            z-index: 1999;
+            display: none;
+        }
+
+        .overlay.show {
+            display: block;
+        }
+
+        /* ============ MODAL ============ */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 40px;
+            max-width: 380px;
+            width: 100%;
+            max-height: 75vh;
+            overflow-y: auto;
+            padding: 28px;
+            animation: zoomIn 0.3s;
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal-header {
+            font-size: 22px;
+            font-weight: 900;
+            margin-bottom: 16px;
+            color: #FF6B35;
+            border-left: 6px solid #FFD700;
+            padding-left: 15px;
+        }
+
+        .close-modal {
+            background: linear-gradient(135deg, #FF6B35, #FFB347);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 40px;
+            width: 100%;
+            margin-top: 20px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        /* ============ TOAST ============ */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #4A3728;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            z-index: 1000;
+            transition: transform 0.3s;
+            white-space: nowrap;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #D4B896;
+        }
+
+        .empty-state .emoji {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 480px) {
+            .module-item { flex-direction: column; gap: 15px; }
+            .btn-download, .btn-open { width: 100%; text-align: center; }
+            .toast { white-space: normal; text-align: center; max-width: 85%; }
+            .header h1 { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Animated Bubbles -->
+<div class="bg-bubbles">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+</div>
+
+<!-- Notification Panel -->
+<div class="overlay" id="overlay" onclick="closeNotificationPanel()"></div>
+<div class="notification-panel" id="notificationPanel">
+    <div class="notification-header">
+        <h3>🔔 Notifications</h3>
+        <button class="close-notif" onclick="closeNotificationPanel()">✕</button>
+    </div>
+    <div class="notification-list" id="notificationList">
+        <div style="text-align: center; padding: 40px;">Loading...</div>
+    </div>
+    <button class="clear-notif" onclick="clearAllNotifications()">Clear All</button>
+</div>
+
+<!-- Header -->
+<div class="header">
+    <div class="header-top">
+        <div class="logo-area">
+            <div class="logo-icon">🎓</div>
+            <div>
+                <h1>WVSU Connect</h1>
+                <div class="header-sub">
+                    <span>🔥 WVSU - Janiuay</span>
+                    <span>⚡ Learn Anywhere</span>
+                </div>
+            </div>
+        </div>
+        <div class="notification-area" onclick="openNotificationPanel()">
+            <div class="bell-icon">🔔</div>
+            <span class="notification-badge" id="notifCount">0</span>
+        </div>
+    </div>
+</div>
+
+<!-- SDG Banner -->
+<div class="sdg-banner">
+    <div class="sdg-icon">🎯</div>
+    <div class="sdg-text">
+        <div class="sdg-title">SDG 4: QUALITY EDUCATION</div>
+        <div class="sdg-desc">🚀 Inclusive & equitable quality education for all</div>
+    </div>
+</div>
+
+<!-- Status Card -->
+<div class="status-card">
+    <div class="status-left">
+        <div class="status-dot"></div>
+        <span class="status-text">🔥 LIVE & READY</span>
+    </div>
+    <div class="mode-badge">⚡ OFFLINE-FIRST</div>
+</div>
+
+<!-- Profile Card -->
+<div class="profile-card">
+    <div class="profile-left">
+        <div class="avatar">👩‍🎓</div>
+        <div>
+            <div class="student-name">Mhariz Villado</div>
+            <div class="student-details">
+                <span>BSIT 3-D</span>
+                <span>•</span>
+                <span>CIT 238</span>
+                <span>•</span>
+                <span>SY 2025-2026</span>
+            </div>
+        </div>
+    </div>
+    <div class="saved-stats">
+        <div class="saved-number" id="savedCount">0</div>
+        <div class="saved-label">saved</div>
+    </div>
+</div>
+
+<!-- Tabs -->
+<div class="tabs-container">
+    <button class="tab active" onclick="showTab('modules')">📚 Modules</button>
+    <button class="tab" onclick="showTab('assignments')">📝 Assignments</button>
+    <button class="tab" onclick="showTab('deadlines')">📅 Deadlines</button>
+    <button class="tab" onclick="showTab('progress')">📊 Progress</button>
+</div>
+
+<!-- Container -->
+<div class="container">
+    <div id="modulesPanel">
+        <div class="card">
+            <div class="card-title">⭐ Available Learning Modules</div>
+            <div id="modulesList"></div>
+        </div>
+        <div class="card">
+            <div class="card-title">📥 My Offline Library</div>
+            <div id="downloadedList"></div>
+        </div>
+    </div>
+
+    <div id="assignmentsPanel" style="display:none;">
+        <div class="card">
+            <div class="card-title">📝 Submit New Assignment</div>
+            <div class="form-group">
+                <label>📌 Assignment Title</label>
+                <input type="text" id="assignTitle" placeholder="e.g., Mobile App Proposal">
+            </div>
+            <div class="form-group">
+                <label>✏️ Your Answer</label>
+                <textarea id="assignContent" placeholder="Write your answer here..."></textarea>
+            </div>
+            <button class="btn-primary" onclick="saveAssignment()">💾 Save Assignment</button>
+        </div>
+        <div class="card">
+            <div class="card-title">📋 My Submissions</div>
+            <div id="submissionsList"></div>
+        </div>
+    </div>
+
+    <div id="deadlinesPanel" style="display:none;">
+        <div class="card">
+            <div class="card-title">📅 Upcoming Deadlines</div>
+            <div id="deadlinesList"></div>
+        </div>
+        <div class="card">
+            <div class="card-title">➕ Add New Deadline</div>
+            <div class="form-group">
+                <label>📌 Assignment Name</label>
+                <input type="text" id="newDeadline" placeholder="e.g., Final Project">
+            </div>
+            <div class="form-group">
+                <label>📅 Due Date</label>
+                <input type="date" id="newDueDate">
+            </div>
+            <button class="btn-primary" onclick="addDeadline()">➕ Add Deadline</button>
+        </div>
+    </div>
+
+    <div id="progressPanel" style="display:none;">
+        <div class="card">
+            <div class="card-title">📊 Learning Progress</div>
+            <div id="progressStats"></div>
+        </div>
+        <div class="impact-card">
+            <div style="font-size: 55px; margin-bottom: 10px;" id="sdgEmoji">🌱</div>
+            <div style="font-weight: 900; font-size: 22px; color: #FF6B35;" id="sdgTitle">Keep Going!</div>
+            <div style="font-size: 13px; color: #B8956E; margin-top: 10px;" id="sdgMessage">Download modules to start your journey</div>
+            <div style="background: white; border-radius: 25px; padding: 15px; margin-top: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <div style="font-weight: 900; font-size: 14px; color: #FF6B35;">🌍 SDG Target 4.3</div>
+                <div style="font-size: 12px; color: #B8956E; margin-top: 5px;">Equal access to quality education for all</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="contentModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header" id="modalTitle"></div>
+        <div id="modalBody" style="line-height: 1.6; font-size: 14px;"></div>
+        <button class="close-modal" onclick="closeModal()">Close</button>
+    </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="toast"></div>
+
+<script>
+    // ============ MODULES DATA ============
+    const MODULES = [
+        { id: 1, title: 'Introduction to Mobile Development', type: 'PDF', size: '2.5MB', downloaded: false, 
+          content: '📱 INTRODUCTION TO MOBILE DEVELOPMENT\n\nMobile application development is creating software for smartphones.\n\nTopics Covered:\n• Android & iOS platforms\n• Mobile development lifecycle\n• Setting up Android Studio\n• Your first mobile app\n\n✅ Available OFFLINE after download' },
+        { id: 2, title: 'Java Programming Fundamentals', type: 'PDF', size: '3.1MB', downloaded: false,
+          content: '☕ JAVA PROGRAMMING FUNDAMENTALS\n\nCore Java for Android:\n• Variables & Data Types\n• Control Flow\n• Object-Oriented Programming\n• Classes & Objects\n\n✅ Available OFFLINE' },
+        { id: 3, title: 'UI/UX Design Principles', type: 'PDF', size: '2.8MB', downloaded: false,
+          content: '🎨 UI/UX DESIGN PRINCIPLES\n\n• User-Centered Design\n• Wireframing\n• Material Design\n• Accessibility\n\n✅ Available OFFLINE' },
+        { id: 4, title: 'Android Studio Setup', type: 'PDF', size: '1.5MB', downloaded: false,
+          content: '🛠️ ANDROID STUDIO SETUP GUIDE\n\nStep-by-step installation guide.\n\n✅ Available OFFLINE' },
+        { id: 5, title: 'SQLite Database', type: 'PDF', size: '2.1MB', downloaded: false,
+          content: '🗄️ SQLITE DATABASE\n\n• Creating databases\n• CRUD operations\n• Room library\n\n✅ Available OFFLINE' },
+        { id: 6, title: 'REST API Integration', type: 'PDF', size: '2.4MB', downloaded: false,
+          content: '🌐 REST API\n\n• HTTP requests\n• JSON parsing\n• Authentication\n\n✅ Available OFFLINE' },
+        { id: 7, title: 'Firebase Integration', type: 'PDF', size: '2.2MB', downloaded: false,
+          content: '🔥 FIREBASE\n\n• Authentication\n• Realtime Database\n• Cloud Storage\n\n✅ Available OFFLINE' }
+    ];
+
+    const DEFAULT_DEADLINES = [
+        { id: 'd1', title: '📱 Mobile App Proposal', due: '2026-02-10', course: 'CIT 238', completed: false },
+        { id: 'd2', title: '🎨 UI Design Mockups', due: '2026-02-15', course: 'CIT 238', completed: false },
+        { id: 'd3', title: '🗄️ Database Project', due: '2026-02-20', course: 'CIT 231', completed: false },
+        { id: 'd4', title: '🚀 Final App Prototype', due: '2026-02-28', course: 'CIT 238', completed: false }
+    ];
+
+    let downloadedModules = [];
+    let submissions = [];
+    let deadlines = [];
+    let notifications = [];
+
+    // ============ NOTIFICATION SYSTEM ============
+    function loadNotifications() {
+        try {
+            let saved = localStorage.getItem('wvsu_notifications');
+            notifications = saved ? JSON.parse(saved) : [];
+            updateNotificationBadge();
+        } catch(e) { notifications = []; }
+    }
+
+    function saveNotifications() {
+        localStorage.setItem('wvsu_notifications', JSON.stringify(notifications));
+        updateNotificationBadge();
+    }
+
+    function updateNotificationBadge() {
+        const unreadCount = notifications.filter(n => !n.read).length;
+        document.getElementById('notifCount').innerHTML = unreadCount;
+    }
+
+    function addNotification(title, message, isUrgent = false) {
+        const newNotif = {
+            id: Date.now(),
+            title: title,
+            message: message,
+            time: new Date().toLocaleString(),
+            read: false,
+            urgent: isUrgent
+        };
+        notifications.unshift(newNotif);
+        saveNotifications();
+        renderNotificationList();
+        showToast(`🔔 ${title}`);
+        
+        if (isUrgent) {
+            setTimeout(() => {
+                alert(`⚠️ REMINDER: ${title}\n${message}`);
+            }, 300);
+        }
+    }
+
+    function renderNotificationList() {
+        const container = document.getElementById('notificationList');
+        if (notifications.length === 0) {
+            container.innerHTML = '<div style="text-align: center; padding: 40px; color: #D4B896;">🔕 No notifications</div>';
+            return;
+        }
+        
+        let html = '';
+        for (let n of notifications) {
+            html += `
+                <div class="notification-item ${n.urgent ? 'urgent' : ''}" onclick="markNotificationRead('${n.id}')">
+                    <div class="notification-title">${escapeHtml(n.title)}</div>
+                    <div class="notification-message">${escapeHtml(n.message)}</div>
+                    <div class="notification-time">${n.time}</div>
+                </div>
+            `;
+        }
+        container.innerHTML = html;
+    }
+
+    function markNotificationRead(id) {
+        const notif = notifications.find(n => n.id == id);
+        if (notif) { notif.read = true; saveNotifications(); renderNotificationList(); }
+    }
+
+    function openNotificationPanel() {
+        document.getElementById('notificationPanel').classList.add('open');
+        document.getElementById('overlay').classList.add('show');
+        notifications.forEach(n => n.read = true);
+        saveNotifications();
+        renderNotificationList();
+        updateNotificationBadge();
+    }
+
+    function closeNotificationPanel() {
+        document.getElementById('notificationPanel').classList.remove('open');
+        document.getElementById('overlay').classList.remove('show');
+    }
+
+    function clearAllNotifications() {
+        notifications = [];
+        saveNotifications();
+        renderNotificationList();
+        showToast('All notifications cleared');
+    }
+
+    function checkDeadlinesForNotifications() {
+        const today = new Date().toISOString().split('T')[0];
+        const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0];
+        
+        for (let d of deadlines) {
+            if (d.completed) continue;
+            if (d.due === today) {
+                const alreadyNotified = notifications.some(n => n.title.includes(d.title) && n.time.includes(today));
+                if (!alreadyNotified) {
+                    addNotification(`⚠️ Deadline Today!`, `${d.title} is due today for ${d.course}`, true);
+                }
+            } else if (d.due === tomorrow) {
+                const alreadyNotified = notifications.some(n => n.title.includes(d.title) && n.time.includes(tomorrow));
+                if (!alreadyNotified) {
+                    addNotification(`📅 Deadline Tomorrow`, `${d.title} is due tomorrow for ${d.course}`, false);
+                }
+            }
+        }
+    }
+
+    // ============ DATA FUNCTIONS ============
+    function loadData() {
+        try {
+            let savedDownloads = localStorage.getItem('wvsu_downloads');
+            downloadedModules = savedDownloads ? JSON.parse(savedDownloads) : [];
+            let savedSubmissions = localStorage.getItem('wvsu_submissions');
+            submissions = savedSubmissions ? JSON.parse(savedSubmissions) : [];
+            let savedDeadlines = localStorage.getItem('wvsu_deadlines');
+            deadlines = savedDeadlines ? JSON.parse(savedDeadlines) : [...DEFAULT_DEADLINES];
+        } catch(e) { console.log('Error:', e); }
+        updateSavedCount();
+        checkDeadlinesForNotifications();
+        setInterval(checkDeadlinesForNotifications, 3600000);
+    }
+
+    function saveData() {
+        localStorage.setItem('wvsu_downloads', JSON.stringify(downloadedModules));
+        localStorage.setItem('wvsu_submissions', JSON.stringify(submissions));
+        localStorage.setItem('wvsu_deadlines', JSON.stringify(deadlines));
+    }
+
+    function updateSavedCount() {
+        document.getElementById('savedCount').innerHTML = submissions.length;
+    }
+
+    // ============ MODULE FUNCTIONS ============
+    function renderModules() {
+        let modulesHtml = '';
+        for (let m of MODULES) {
+            const isDownloaded = downloadedModules.includes(m.id);
+            modulesHtml += `
+                <div class="module-item">
+                    <div class="module-info">
+                        <h4>${m.title} ${isDownloaded ? '<span class="badge-downloaded">✓ Downloaded</span>' : ''}</h4>
+                        <p>📄 ${m.type} • ${m.size}</p>
+                    </div>
+                    ${isDownloaded ? 
+                        `<button class="btn-open" onclick="openModule(${m.id})">📖 Read</button>` :
+                        `<button class="btn-download" onclick="downloadModule(${m.id})">⬇️ Download</button>`
+                    }
+                </div>
+            `;
+        }
+        document.getElementById('modulesList').innerHTML = modulesHtml;
+        
+        let downloadedHtml = '';
+        const downloadedList = MODULES.filter(m => downloadedModules.includes(m.id));
+        if (downloadedList.length === 0) {
+            downloadedHtml = '<div class="empty-state"><div class="emoji">📭</div><div>No downloaded modules yet</div></div>';
+        } else {
+            for (let m of downloadedList) {
+                downloadedHtml += `
+                    <div class="module-item">
+                        <div class="module-info">
+                            <h4>${m.title}</h4>
+                            <p>✓ Stored on your device • ${m.size}</p>
+                        </div>
+                        <button class="btn-open" onclick="openModule(${m.id})">📖 Read</button>
+                    </div>
+                `;
+            }
+        }
+        document.getElementById('downloadedList').innerHTML = downloadedHtml;
+        updateProgress();
+    }
+
+    function downloadModule(id) {
+        if (!downloadedModules.includes(id)) {
+            downloadedModules.push(id);
+            saveData();
+            const module = MODULES.find(m => m.id === id);
+            addNotification(`📥 Module Downloaded`, `${module.title} is now available offline!`, false);
+            showToast(`✅ Downloaded: ${module.title}`);
+            renderModules();
+        }
+    }
+
+    function openModule(id) {
+        const module = MODULES.find(m => m.id === id);
+        if (module) {
+            document.getElementById('modalTitle').innerHTML = `📖 ${module.title}`;
+            document.getElementById('modalBody').innerHTML = `
+                <div style="white-space: pre-line;">${module.content}</div>
+                <div style="background:linear-gradient(135deg,#d1fae5,#a7f3d0); padding:16px; border-radius:24px; margin-top:20px;">
+                    ✅ <strong>Offline Access</strong><br>This content is stored on your device
+                </div>
+            `;
+            document.getElementById('contentModal').classList.add('active');
+        }
+    }
+
+    // ============ ASSIGNMENT FUNCTIONS ============
+    function saveAssignment() {
+        const title = document.getElementById('assignTitle').value.trim();
+        const content = document.getElementById('assignContent').value.trim();
+        if (!title || !content) { showToast('⚠️ Please fill all fields'); return; }
+        
+        submissions.unshift({ id: Date.now(), title, content, date: new Date().toLocaleString() });
+        saveData();
+        document.getElementById('assignTitle').value = '';
+        document.getElementById('assignContent').value = '';
+        addNotification(`📝 Assignment Saved`, `"${title}" has been saved to your device`, false);
+        showToast(`✅ "${title}" saved`);
+        renderSubmissions();
+        updateSavedCount();
+        updateProgress();
+    }
+
+    function renderSubmissions() {
+        let html = '';
+        if (submissions.length === 0) {
+            html = '<div class="empty-state"><div class="emoji">📭</div><div>No submissions yet</div></div>';
+        } else {
+            for (let s of submissions) {
+                html += `
+                    <div class="module-item">
+                        <div class="module-info">
+                            <h4>${escapeHtml(s.title)} <span class="badge-downloaded">✓ Saved</span></h4>
+                            <p>📅 ${s.date}</p>
+                            <p style="font-size:11px;">${escapeHtml(s.content.substring(0, 70))}...</p>
+                        </div>
+                        <button class="btn-open" onclick="viewSubmission('${s.id}')">👁️ View</button>
+                    </div>
+                `;
+            }
+        }
+        document.getElementById('submissionsList').innerHTML = html;
+    }
+
+    function viewSubmission(id) {
+        const sub = submissions.find(s => s.id == id);
+        if (sub) {
+            document.getElementById('modalTitle').innerHTML = `📝 ${sub.title}`;
+            document.getElementById('modalBody').innerHTML = `
+                <strong>Submitted:</strong> ${sub.date}<br><br>
+                <strong>Content:</strong><br>
+                <div style="background:#f8fafc; padding:16px; border-radius:24px; margin-top:12px;">${escapeHtml(sub.content)}</div>
+            `;
+            document.getElementById('contentModal').classList.add('active');
+        }
+    }
+
+    // ============ DEADLINE FUNCTIONS ============
+    function renderDeadlines() {
+        let html = '';
+        const today = new Date().toISOString().split('T')[0];
+        
+        for (let d of deadlines) {
+            const isOverdue = !d.completed && d.due < today;
+            const isDueToday = !d.completed && d.due === today;
+            html += `
+                <div class="deadline-item ${d.completed ? 'completed' : ''} ${isOverdue ? 'overdue' : ''}">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <div class="deadline-title">${escapeHtml(d.title)} ${isDueToday ? '<span style="color:#FF3366; font-size:11px;"> 🔥 TODAY</span>' : ''}</div>
+                        <button class="btn-download" style="padding:6px 18px; font-size:11px;" onclick="toggleDeadline('${d.id}')">${d.completed ? '↺ Undo' : '✓ Complete'}</button>
+                    </div>
+                    <div class="deadline-date">📅 Due: ${d.due} • ${d.course} ${isOverdue ? '⚠️ OVERDUE' : ''}</div>
+                </div>
+            `;
+        }
+        document.getElementById('deadlinesList').innerHTML = html;
+        updateProgress();
+    }
+
+    function addDeadline() {
+        const title = document.getElementById('newDeadline').value.trim();
+        const due = document.getElementById('newDueDate').value;
+        if (!title || !due) { showToast('⚠️ Fill all fields'); return; }
+        
+        deadlines.push({ id: Date.now().toString(), title, due, course: 'CIT 238', completed: false });
+        saveData();
+        document.getElementById('newDeadline').value = '';
+        document.getElementById('newDueDate').value = '';
+        addNotification(`📅 New Deadline`, `"${title}" due on ${due}`, false);
+        showToast(`✅ Added: ${title}`);
+        renderDeadlines();
+        checkDeadlinesForNotifications();
+    }
+
+    function toggleDeadline(id) {
+        const d = deadlines.find(dl => dl.id === id);
+        if (d) {
+            const wasCompleted = d.completed;
+            d.completed = !d.completed;
+            saveData();
+            renderDeadlines();
+            if (!wasCompleted && d.completed) {
+                addNotification(`✅ Deadline Completed`, `You completed "${d.title}"! Great job!`, false);
+            }
+            showToast(d.completed ? `✓ Completed: ${d.title}` : `↺ Reopened: ${d.title}`);
+        }
+    }
+
+    // ============ PROGRESS FUNCTIONS ============
+    function updateProgress() {
+        const downloadedCount = downloadedModules.length;
+        const totalModules = MODULES.length;
+        const submissionsCount = submissions.length;
+        const completedDeadlines = deadlines.filter(d => d.completed).length;
+        const totalDeadlines = deadlines.length;
+        const modulePercent = (downloadedCount / totalModules * 100).toFixed(0);
+        
+        document.getElementById('progressStats').innerHTML = `
+            <div class="progress-stat">
+                <div class="progress-label">
+                    <span>📚 Downloaded Modules</span>
+                    <span>${downloadedCount}/${totalModules}</span>
+                </div>
+                <div class="progress-bar"><div class="progress-fill" style="width: ${modulePercent}%;"></div></div>
+            </div>
+            <div class="progress-stat">
+                <div class="progress-label">
+                    <span>📝 Assignments Submitted</span>
+                    <span>${submissionsCount}</span>
+                </div>
+                <div class="progress-bar"><div class="progress-fill" style="width: ${Math.min(100, submissionsCount * 14)}%;"></div></div>
+            </div>
+            <div class="progress-stat">
+                <div class="progress-label">
+                    <span>✅ Deadlines Completed</span>
+                    <span>${completedDeadlines}/${totalDeadlines}</span>
+                </div>
+                <div class="progress-bar"><div class="progress-fill" style="width: ${totalDeadlines > 0 ? (completedDeadlines / totalDeadlines * 100) : 0}%;"></div></div>
+            </div>
+        `;
+        
+        const sdgEmoji = document.getElementById('sdgEmoji');
+        const sdgTitle = document.getElementById('sdgTitle');
+        const sdgMessage = document.getElementById('sdgMessage');
+        
+        if (downloadedCount >= 5) {
+            sdgEmoji.innerHTML = '🏆';
+            sdgTitle.innerHTML = 'Quality Education Champion! 🎉';
+            sdgMessage.innerHTML = `${downloadedCount} modules offline • You're a star! ⭐`;
+        } else if (downloadedCount >= 3) {
+            sdgEmoji.innerHTML = '⭐';
+            sdgTitle.innerHTML = 'Great Progress! 🚀';
+            sdgMessage.innerHTML = `${downloadedCount} modules downloaded • Keep crushing it!`;
+        } else if (downloadedCount >= 1) {
+            sdgEmoji.innerHTML = '🌱';
+            sdgTitle.innerHTML = 'Good Start! 💪';
+            sdgMessage.innerHTML = `${downloadedCount} module(s) offline • You've got this!`;
+        } else {
+            sdgEmoji.innerHTML = '🌱';
+            sdgTitle.innerHTML = 'Ready to Learn? 🎯';
+            sdgMessage.innerHTML = 'Download modules to unlock offline access!';
+        }
+    }
+
+    // ============ UI HELPERS ============
+    function showTab(tabName) {
+        document.getElementById('modulesPanel').style.display = 'none';
+        document.getElementById('assignmentsPanel').style.display = 'none';
+        document.getElementById('deadlinesPanel').style.display = 'none';
+        document.getElementById('progressPanel').style.display = 'none';
+        if (tabName === 'modules') document.getElementById('modulesPanel').style.display = 'block';
+        if (tabName === 'assignments') document.getElementById('assignmentsPanel').style.display = 'block';
+        if (tabName === 'deadlines') document.getElementById('deadlinesPanel').style.display = 'block';
+        if (tabName === 'progress') document.getElementById('progressPanel').style.display = 'block';
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        event.target.classList.add('active');
+        if (tabName === 'modules') renderModules();
+        if (tabName === 'assignments') renderSubmissions();
+        if (tabName === 'deadlines') renderDeadlines();
+        if (tabName === 'progress') updateProgress();
+    }
+    
+    function closeModal() { document.getElementById('contentModal').classList.remove('active'); }
+    
+    function showToast(msg) { 
+        const toast = document.getElementById('toast');
+        toast.textContent = msg;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2000);
+    }
+    
+    function escapeHtml(text) { return String(text).replace(/[&<>]/g, function(m) { return m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;'; }); }
+
+    // ============ INITIALIZE ============
+    loadNotifications();
+    loadData();
+    renderModules();
+    renderSubmissions();
+    renderDeadlines();
+    document.querySelector('.tab').classList.add('active');
+</script>
+</body>
+</html>
